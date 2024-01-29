@@ -1,7 +1,8 @@
 <?php
     require_once __DIR__ . '/classes.php/Funcionario.php';
+    require_once __DIR__ . '/classes.php/FuncionarioDAO.php';
 
-    $funcionarioDAO = new $funcionarioDAO();
+    $funcionarioDAO = new FuncionarioDAO();
 
     $funcionarios = [
         $f1 = new Funcionario('Felipe', 'M', 20, 1500),
@@ -13,7 +14,7 @@
     foreach ($funcionarios as $funcionario) {
         $funcionarioDAO->create($funcionario);
     }
-
+/*
     $funcionarios = $funcionarioDAO->getFuncionarios();
 
     $funcionarios[2]->setNome('Pedro');
@@ -33,5 +34,5 @@
 
     $funcionarioDAO->delete($funcionarios[1]->getId());
 
-    print_r($funcionarioDAO->getFuncionarios());
+    print_r($funcionarioDAO->getFuncionarios());*/
 ?>
