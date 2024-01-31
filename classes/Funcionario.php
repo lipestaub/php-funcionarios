@@ -2,15 +2,15 @@
     namespace classes;
 
     class Funcionario {
-        private int $id;
+        private ?int $id;
         private string $nome;
         private string $genero;
         private int $idade;
         private float $salario;
 
-        public function __construct(string $nome, string $genero, int $idade, float $salario)
+        public function __construct(?int $id = 0, string $nome, string $genero, int $idade, float $salario)
         {
-            $this->id = 0;
+            $this->id = $id;
             $this->nome = $nome;
             $this->genero = $genero;
             $this->idade = $idade;
