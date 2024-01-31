@@ -1,57 +1,64 @@
 <?php
-    require_once __DIR__ . '/classes.php/Funcionario.php';
-    require_once __DIR__ . '/classes.php/FuncionarioDAO.php';
+    require_once './classes/Funcionario.php';
+    require_once './models/Funcionario.php';
 
-    $funcionarioDAO = new FuncionarioDAO();
+    $modelFuncionario = new \models\Funcionario();
 
     $funcionarios = [
-        new Funcionario('Felipe', 'M', 20, 1500),
-        new Funcionario('Luan', 'M', 20, 750.50),
-        new Funcionario('Rafael', 'M', 20, 1200),
-        new Funcionario('Gustavo', 'M', 20, 980.98)
+        new \classes\Funcionario('Felipe', 'M', 20, 1500),
+        new \classes\Funcionario('Luan', 'M', 20, 750.50),
+        new \classes\Funcionario('Rafael', 'M', 20, 1200),
+        new \classes\Funcionario('Gustavo', 'M', 20, 980.98)
     ];
 
     foreach ($funcionarios as $funcionario) {
-        $funcionarioDAO->create($funcionario);
+        $modelFuncionario->create($funcionario);
     }
 
-    echo "CADASTROS REALIZADOS\n";
+    echo "\nCADASTROS REALIZADOS\n";
 
-    $funcionariosDB = $funcionarioDAO->getFuncionarios();
+    $funcionariosDB = $modelFuncionario->getFuncionarios();
 
-    echo "FUNCIONÁRIOS:\n";
-    print_r($funcionarios);
+    echo "\nFUNCIONÁRIOS:\n";
+    print_r($funcionariosDB);
 
     foreach ($funcionariosDB as $key=>$funcionario) {
-        $funcionarios[$key]->setId($funcionariosDB[$key]['id']); 
+        $funcionarios[$key]->setId($funcionariosDB[$key]['id']);
+
+        $funcionarios[$key]->setNome('Jobson');
+        $modelFuncionario->update($funcionarios[$key]);
+
+        $funcionarios[$key]->getId();
+
+        $modelFuncionario->updateSalario($funcionarios[$key]->getId(), 10);
     }
 
-    echo "IDS SETADOS\n";
+    echo "\nALTERAÇÔES REALIZADAS\n";
 
-    $funcionarios[2]->setNome('Pedro');
-    $funcionarioDAO->update($funcionarios[2]);
+    $funcionariosDB = $modelFuncionario->getFuncionarios();
 
-    echo "O FUNCIONÁRIO " . $funcionarios[2]->getId() . " FOI ALTERADO\n";
+    echo "\nFUNCIONÁRIOS:\n";
+    print_r($funcionariosDB);
 
-    $funcionarioDAO->updateSalario($funcionarios[2]->getId(), 10);
+    $idFuncionario = $funcionarios[2]->getId();
 
-    $funcionarios = $funcionarioDAO->getFuncionarios();
+    echo "\nID DO FUNCIONÁRIO: ";
+    echo $idFuncionario;
 
-    echo "FUNCIONÁRIOS:\n";
+    unset($funcionarios[2]);
+    echo "\n\nUNSET FUNCIONÁRIO $idFuncionario REALIZADO\n";
+
+    echo "\nFUNCIONÁRIOS:\n";
     print_r($funcionarios);
 
-    $idFuncionario = $funcionarios[2]['id'];
+    $funcionario = $modelFuncionario->getFuncionario($idFuncionario);
 
-    $funcionario = $funcionarioDAO->getFuncionario($idFuncionario);
-
-    echo "FUNCIONÁRIO: " . $idFuncionario . "\n";
-
+    echo "\nFUNCIONÁRIO: $idFuncionario\n";
     print_r($funcionario);
 
-    $funcionarioDAO->delete($idFuncionario);
+    $modelFuncionario->delete($idFuncionario);
+    echo "\nO FUNCIONÁRIO " . $idFuncionario . " FOI EXCLUÍDO\n";
 
-    echo "O FUNCIONÁRIO " . $idFuncionario . " FOI EXCLUÍDO\n";
-
-    echo "FUNCIONÁRIOS:\n";
-    print_r($funcionarioDAO->getFuncionarios());
+    echo "\nFUNCIONÁRIOS:\n";
+    print_r($modelFuncionario->getFuncionarios());
 ?>

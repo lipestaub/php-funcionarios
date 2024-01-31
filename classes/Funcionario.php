@@ -1,6 +1,8 @@
 <?php
+    namespace classes;
+
     class Funcionario {
-        private $id;
+        private int $id;
         private string $nome;
         private string $genero;
         private int $idade;
@@ -8,7 +10,7 @@
 
         public function __construct(string $nome, string $genero, int $idade, float $salario)
         {
-            $this->id = null;
+            $this->id = 0;
             $this->nome = $nome;
             $this->genero = $genero;
             $this->idade = $idade;
