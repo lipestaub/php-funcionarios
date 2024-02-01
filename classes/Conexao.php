@@ -1,11 +1,18 @@
 <?php
     namespace classes;
 
+    use PDOException;
+
     class Conexao {
         public static function getConnection() {
-            $connection = new \PDO('pgsql:host=localhost;dbname=empresa', 'postgres', 'postgres');
+            try {
+                $connection = new \PDO('pgsql:host=localhost;dbname=empresa', 'postgres', 'postgres');
 
-            return $connection;
+                return $connection;
+            }
+            catch (PDOException $exception) {
+                echo "Connection failed: " . $exception->getMessage();
+            }
         }
     }
 ?>
