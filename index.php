@@ -26,7 +26,7 @@
 
     $funcionariosDB = $modelFuncionario->getFuncionarios();
 
-    echo "\nFUNCIONÁRIOS:\n";
+    echo "\nFUNCIONÁRIOS (SELECT NO BANCO DE DADOS):\n";
     print_r($funcionariosDB);
 
     foreach ($funcionariosDB as $key=>$funcionario) {
@@ -55,7 +55,7 @@
 
     $funcionariosDB = $modelFuncionario->getFuncionarios();
 
-    echo "\nFUNCIONÁRIOS:\n";
+    echo "\nFUNCIONÁRIOS (SELECT NO BANCO DE DADOS):\n";
     print_r($funcionariosDB);
 
     $idFuncionario = $funcionarios[2]->getId();
@@ -66,7 +66,7 @@
     unset($funcionarios[2]);
     echo "\n\nUNSET FUNCIONÁRIO $idFuncionario REALIZADO\n";
 
-    echo "\nFUNCIONÁRIOS:\n";
+    echo "\nFUNCIONÁRIOS (ARRAY DE OBJETOS):\n";
     print_r($funcionarios);
 
     try {
@@ -89,6 +89,6 @@
     }
     echo "\nO FUNCIONÁRIO " . $idFuncionario . " FOI EXCLUÍDO\n";
 
-    echo "\nFUNCIONÁRIOS:\n";
+    echo "\nFUNCIONÁRIOS (SELECT NO BANCO DE DADOS):\n";
     print_r($modelFuncionario->getFuncionarios());
 ?>
